@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fusion: 7-Day Mastery Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #f59e0b;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #22c55e;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-day: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+      
+      /* Dark theme (default) */
+      --bg: #0f172a;
+      --bg-secondary: #1e293b;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-heading: #ffffff;
+      --border: rgba(255, 255, 255, 0.1);
+      --card-bg: #1e293b;
+      --code-bg: rgba(99, 102, 241, 0.2);
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text: #334155;
+      --text-muted: #64748b;
+      --text-heading: #0f172a;
+      --border: rgba(0, 0, 0, 0.1);
+      --card-bg: #f1f5f9;
+      --code-bg: rgba(99, 102, 241, 0.1);
+      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 17px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    [data-theme="light"] body::before {
+      opacity: 0.5;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .theme-toggle-track {
+      width: 44px;
+      height: 24px;
+      background: var(--bg);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    .theme-toggle-thumb {
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    [data-theme="light"] .theme-toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    .theme-toggle-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* TOC Toggle Button */
+    .toc-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .toc-toggle:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Table of Contents Sidebar */
+    .toc-sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 320px;
+      height: 100vh;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      z-index: 999;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      padding: 80px 24px 24px;
+    }
+
+    .toc-sidebar.open {
+      left: 0;
+    }
+
+    .toc-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .toc-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .toc-header {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .toc-section {
+      margin-bottom: 20px;
+    }
+
+    .toc-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .toc-link:hover {
+      background: var(--bg);
+      color: var(--primary);
+      border-left-color: var(--primary);
+    }
+
+    .toc-link.day-link {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .toc-link.sub-link {
+      padding-left: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--gradient-day);
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.3;
+      top: -200px;
+      right: -200px;
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.4; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .hero-badge::before {
+      content: '🚀';
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--text-heading) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Author Note - Callout */
+    .author-note {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-left: 4px solid var(--danger);
+      padding: 24px 28px;
+      border-radius: 0 12px 12px 0;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .author-note::before {
+      content: '⚠️ REAL TALK';
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--bg);
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--danger);
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+
+    [data-theme="light"] .nav {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-heading);
+    }
+
+    .nav-days {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav-day {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-day:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Day Cards */
+    .day-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .day-number {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-day);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glow);
+      color: white;
+    }
+
+    .day-number span:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.8;
+    }
+
+    .day-number span:last-child {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .day-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .day-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    .day-time::before {
+      content: '⏱️';
+    }
+
+    /* Section Headers */
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin: 60px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin: 40px 0 16px;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 32px 0 12px;
+    }
+
+    /* Exercise Cards */
+    .exercise {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exercise::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-day);
+    }
+
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .exercise-badge {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .exercise-title {
+      font-weight: 600;
+      color: var(--text-heading);
+      font-size: 1.1rem;
+    }
+
+    /* Pro Tips */
+    .pro-tip {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      position: relative;
+    }
+
+    .pro-tip::before {
+      content: '💡 PRO TIP';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Warning Boxes */
+    .warning {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .warning::before {
+      content: '⚠️ CRITICAL';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--warning);
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 24px 0;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    thead {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+
+    th {
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+
+    td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    code {
+      background: rgba(99, 102, 241, 0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #a5b4fc;
+    }
+
+    pre {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* Parameter blocks - special styling */
+    .params {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .params::before {
+      content: '📐 PARAMETERS';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* Checklists */
+    .checklist {
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 32px 0;
+    }
+
+    .checklist-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .checklist-title {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    ul.task-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.task-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul.task-list li:last-child {
+      border-bottom: none;
+    }
+
+    ul.task-list input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Regular lists */
+    ul, ol {
+      padding-left: 24px;
+      margin: 16px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    li::marker {
+      color: var(--primary);
+    }
+
+    /* Links */
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    a:hover {
+      color: #a5b4fc;
+      border-bottom-color: currentColor;
+    }
+
+    /* Resource Cards */
+    .resource-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 12px 0;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .resource-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    /* Progress indicator */
+    .progress-bar {
+      height: 4px;
+      background: var(--bg-secondary);
+      border-radius: 2px;
+      margin: 40px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-day);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* Keyboard shortcuts */
+    kbd {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-heading);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    /* Horizontal rules */
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+      margin: 60px 0;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+      border-left: 4px solid var(--primary);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* Strong/Bold text */
+    strong {
+      color: var(--text-heading);
+      font-weight: 600;
+    }
+
+    /* Final section styling */
+    .final-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-radius: 24px;
+      padding: 48px;
+      margin: 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .final-section h2 {
+      border: none;
+      display: block;
+      font-size: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-stats {
+        gap: 24px;
+      }
+
+      .day-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-days {
+        display: none;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 10px 12px;
+      }
+
+      .exercise, .checklist {
+        padding: 20px;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .nav, .hero::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+  <span class="theme-toggle-label">Theme</span>
+  <div class="theme-toggle-track">
+    <div class="theme-toggle-thumb">🌙</div>
+  </div>
+</button>
+
+<!-- TOC Toggle Button -->
+<button class="toc-toggle" id="tocToggle" aria-label="Open table of contents">
+  📑
+</button>
+
+<!-- TOC Overlay -->
+<div class="toc-overlay" id="tocOverlay"></div>
+
+<!-- Table of Contents Sidebar -->
+<nav class="toc-sidebar" id="tocSidebar">
+  <div class="toc-header">📚 Table of Contents</div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Getting Started</div>
+    <a href="#" class="toc-link" onclick="scrollToHero()">Introduction</a>
+    <a href="#prerequisites" class="toc-link">Prerequisites</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 1</div>
+    <a href="#day1" class="toc-link day-link">Parametric Thinking & Foundations</a>
+    <a href="#day1" class="toc-link sub-link">Navigation Mastery</a>
+    <a href="#day1" class="toc-link sub-link">Parameters First</a>
+    <a href="#day1" class="toc-link sub-link">Sketching Basics</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 2</div>
+    <a href="#day2" class="toc-link day-link">Sketching with Intent</a>
+    <a href="#day2" class="toc-link sub-link">Geometric Constraints</a>
+    <a href="#day2" class="toc-link sub-link">Construction Geometry</a>
+    <a href="#day2" class="toc-link sub-link">Symmetry & Mirror</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 3</div>
+    <a href="#day3" class="toc-link day-link">Features for Strength</a>
+    <a href="#day3" class="toc-link sub-link">Modify Tools</a>
+    <a href="#day3" class="toc-link sub-link">Ribs vs Solid Walls</a>
+    <a href="#day3" class="toc-link sub-link">Print Orientation</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 4</div>
+    <a href="#day4" class="toc-link day-link">Components & Assemblies</a>
+    <a href="#day4" class="toc-link sub-link">Bodies vs Components</a>
+    <a href="#day4" class="toc-link sub-link">Tolerances</a>
+    <a href="#day4" class="toc-link sub-link">Joints & Motion</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 5</div>
+    <a href="#day5" class="toc-link day-link">Advanced Shape Creation</a>
+    <a href="#day5" class="toc-link sub-link">Revolve</a>
+    <a href="#day5" class="toc-link sub-link">Sweep</a>
+    <a href="#day5" class="toc-link sub-link">Loft</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 6</div>
+    <a href="#day6" class="toc-link day-link">Optimization & Sculpting</a>
+    <a href="#day6" class="toc-link sub-link">Design Optimization</a>
+    <a href="#day6" class="toc-link sub-link">Form Mode</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Day 7</div>
+    <a href="#day7" class="toc-link day-link">Capstone Project</a>
+    <a href="#day7" class="toc-link sub-link">Full Workflow</a>
+    <a href="#day7" class="toc-link sub-link">Export & Print</a>
+  </div>
+  
+  <div class="toc-section">
+    <div class="toc-section-title">Reference</div>
+    <a href="#shortcuts" class="toc-link">Keyboard Shortcuts</a>
+    <a href="#printing-rules" class="toc-link">3D Printing Rules</a>
+    <a href="#mistakes" class="toc-link">Common Mistakes</a>
+    <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
+    <a href="#resources" class="toc-link">Resources</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-badge">7-Day Intensive Program</div>
+  <h1>Fusion Mastery Plan</h1>
+  <p class="hero-subtitle">From zero to confident CAD designer. Build real, printable projects every single day. No passive watching — only hands-on learning.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Days</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">35+</div>
+      <div class="stat-label">Hours</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Projects</div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Navigation -->
+<nav class="nav">
+  <div class="container nav-content">
+    <div class="nav-logo">Fusion Mastery</div>
+    <div class="nav-days">
+      <a href="#day1" class="nav-day">1</a>
+      <a href="#day2" class="nav-day">2</a>
+      <a href="#day3" class="nav-day">3</a>
+      <a href="#day4" class="nav-day">4</a>
+      <a href="#day5" class="nav-day">5</a>
+      <a href="#day6" class="nav-day">6</a>
+      <a href="#day7" class="nav-day">7</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- Author's Note -->
+<div class="author-note">
+  <p><strong>This plan is designed by someone who has seen hundreds of students fail at CAD.</strong> The #1 mistake? Watching tutorials passively. Every single day here includes <strong>mandatory practice projects</strong>. If you skip them, you will not learn. Period.</p>
+</div>
+
+<!-- Universal Design Checklist -->
+<h2>📋 Universal Design Checklist</h2>
+<p><em>Print this. Tape it to your monitor. Check it before exporting ANY model.</em></p>
+
+<div class="checklist">
+  <div class="checklist-header">
+    <div class="checklist-icon">📝</div>
+    <div class="checklist-title">Planning Phase</div>
+  </div>
+  <ul class="task-list">
+    <li><label><input type="checkbox" /> Design intent clearly defined (what problem does this solve?)</label></li>
+    <li><label><input type="checkbox" /> User parameters created BEFORE sketching</label></li>
+    <li><label><input type="checkbox" /> Print orientation considered from the start</label></li>
+  </ul>
+</div>
+
+<div class="checklist">
+  <div class="checklist-header">
+    <div class="checklist-icon">✏️</div>
+    <div class="checklist-title">Sketching Phase</div>
+  </div>
+  <ul class="task-list">
+    <li><label><input type="checkbox" /> Model starts from origin and primary planes</label></li>
+    <li><label><input type="checkbox" /> All sketches fully constrained (BLACK lines, not blue)</label></li>
+    <li><label><input type="checkbox" /> Each sketch has a single clear purpose</label></li>
+    <li><label><input type="checkbox" /> No hard-coded dimensions (parameters only)</label></li>
+    <li><label><input type="checkbox" /> Construction geometry used for reference/symmetry</label></li>
+  </ul>
+</div>
+
+<div class="checklist">
+  <div class="checklist-header">
+    <div class="checklist-icon">🔧</div>
+    <div class="checklist-title">Modeling Phase</div>
+  </div>
+  <ul class="task-list">
+    <li><label><input type="checkbox" /> Features ordered logically in timeline</label></li>
+    <li><label><input type="checkbox" /> Fillets used to reduce stress concentrations</label></li>
+    <li><label><input type="checkbox" /> Shells and ribs used instead of solid blocks</label></li>
+    <li><label><input type="checkbox" /> Components used for multi-part designs</label></li>
+    <li><label><input type="checkbox" /> Clearances parameterized for mating parts</label></li>
+  </ul>
+</div>
+
+<div class="checklist">
+  <div class="checklist-header">
+    <div class="checklist-icon">✅</div>
+    <div class="checklist-title">Validation Phase</div>
+  </div>
+  <ul class="task-list">
+    <li><label><input type="checkbox" /> Section analysis performed on critical areas</label></li>
+    <li><label><input type="checkbox" /> Wall thickness meets minimum (1.2mm+ for FDM)</label></li>
+    <li><label><input type="checkbox" /> Overhangs kept under 45° where possible</label></li>
+    <li><label><input type="checkbox" /> Model oriented for print strength (load perpendicular to layers)</label></li>
+    <li><label><input type="checkbox" /> STL exported in millimeters</label></li>
+    <li><label><input type="checkbox" /> Final model can be resized by changing parameters only</label></li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- Prerequisites -->
+<h2 id="prerequisites">🚀 Critical Prerequisites</h2>
+<p><strong>Do This BEFORE Day 1</strong></p>
+
+<div class="checklist">
+  <ul class="task-list">
+    <li><label><input type="checkbox" /> Download and install Fusion (free for personal/hobbyist use)</label></li>
+    <li><label><input type="checkbox" /> Set up an Autodesk account</label></li>
+    <li><label><input type="checkbox" /> Configure your mouse: <strong>Get a 3-button mouse with scroll wheel</strong> — trackpad users struggle 10x more</label></li>
+    <li><label><input type="checkbox" /> Set your default units to <strong>millimeters</strong> (Edit → Preferences → Design → Default Units)</label></li>
+    <li><label><input type="checkbox" /> Enable "Capture Design History" (it's on by default, don't turn it off)</label></li>
+    <li><label><input type="checkbox" /> Bookmark this document — you'll reference it daily</label></li>
+    <li><label><input type="checkbox" /> <strong>Print a tolerance test piece</strong> (search "tolerance test" on Printables) — know YOUR printer's actual tolerances before Day 4</label></li>
+    <li><label><input type="checkbox" /> <strong>Have your 3D printer calibrated</strong> — flow rate, bed leveling, first layer dialed in</label></li>
+  </ul>
+</div>
+
+<h3>⏰ Time Commitment Reality Check</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Estimated Time</th>
+      <th>What You'll Build</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>4-5 hours</td><td>Parametric box, navigation mastery</td></tr>
+    <tr><td>2</td><td>5 hours</td><td>Mounting plate, symmetric bracket</td></tr>
+    <tr><td>3</td><td>5 hours</td><td>Enclosure, ribbed plate, wall hook</td></tr>
+    <tr><td>4</td><td>5-6 hours</td><td>Two-part box with lid, hinged assembly</td></tr>
+    <tr><td>5</td><td>5-6 hours</td><td>Knob, cable clip, tool handle, threaded cap</td></tr>
+    <tr><td>6</td><td>5-6 hours</td><td>Optimized redesigns, sculpted grip</td></tr>
+    <tr><td>7</td><td>6-8 hours</td><td>Complete multi-part project</td></tr>
+  </tbody>
+</table>
+
+<div class="warning">
+  <strong>Total: 35-41 hours over 7 days.</strong> This is intensive. If you can only do 2-3 hours/day, stretch to 14 days. Don't rush — incomplete understanding compounds into bigger problems later.
+</div>
+
+<hr>
+
+<!-- DAY 1 -->
+<section class="day-section" id="day1">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>1</span>
+    </div>
+    <div>
+      <div class="day-title">Parametric Thinking & Fusion Foundations</div>
+      <div class="day-time">4-5 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Understand how Fusion works and build fully parametric, predictable models from your FIRST design.</p>
+
+  <h3>🌅 Morning: Interface & Navigation Mastery (1.5 hours)</h3>
+  
+  <div class="warning">
+    <strong>The Problem with Most Tutorials:</strong> They rush past navigation. Students then spend weeks fighting the viewport instead of designing.
+  </div>
+
+  <h4>Core Navigation Skills</h4>
+  <table>
+    <thead>
+      <tr><th>Action</th><th>How</th><th>Why It Matters</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ViewCube</td><td>Click faces/edges/corners</td><td>Quick standard views</td></tr>
+      <tr><td>Orbit</td><td>Middle mouse + drag</td><td>See your model from any angle</td></tr>
+      <tr><td>Pan</td><td>Middle mouse + Shift</td><td>Move view without rotating</td></tr>
+      <tr><td>Zoom</td><td>Scroll wheel</td><td>Get closer/further</td></tr>
+      <tr><td>Zoom to Fit</td><td><kbd>F</kbd> or double-click middle mouse</td><td>Lost? This saves you</td></tr>
+      <tr><td>Look At</td><td>Right-click face → "Look At"</td><td>Align view to any surface</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 1.1</span>
+      <span class="exercise-title">Navigation Practice</span>
+    </div>
+    <p>Open a new design. Spend 15 minutes ONLY navigating. Orbit to see the origin planes from every angle. <strong>This feels stupid. Do it anyway.</strong></p>
+  </div>
+
+  <h4>Data Panel & File Management</h4>
+  <ul>
+    <li>Understand Projects vs Folders</li>
+    <li><strong>CRITICAL:</strong> Fusion saves to the cloud. Learn to use "Export" for local .f3d backups</li>
+    <li>Version history — right-click any design to see previous versions</li>
+  </ul>
+
+  <h3>☀️ Midday: Parameters FIRST — The Professional Mindset (1 hour)</h3>
+  
+  <div class="pro-tip">
+    <strong>This is the most important habit you'll build.</strong> Professionals create parameters before sketching. Beginners hard-code numbers and regret it later.
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 1.2</span>
+      <span class="exercise-title">Your First Parametric Setup</span>
+    </div>
+    <ol>
+      <li>Create new design</li>
+      <li>Go to Modify → Change Parameters</li>
+      <li>Click "+" to add User Parameters:</li>
+    </ol>
+    <div class="params">
+<pre><code>box_length = 60 mm
+box_width = 40 mm
+box_height = 25 mm
+wall_thickness = 2 mm
+corner_radius = 5 mm</code></pre>
+    </div>
+    <p>Click OK — these are now available in ANY dimension field</p>
+  </div>
+
+  <div class="pro-tip">
+    <strong>Why This Matters:</strong> Later, when your client says "make it 80mm long," you change ONE number. The entire model updates. This is parametric design.
+  </div>
+
+  <h3>🌆 Afternoon: Sketching — The Foundation of Everything (2.5 hours)</h3>
+  
+  <div class="warning">
+    <strong>Hard Truth:</strong> 80% of your modeling success depends on clean sketches. Garbage sketch = garbage model.
+  </div>
+
+  <h4>Sketch Constraints (MEMORIZE THESE)</h4>
+  <table>
+    <thead>
+      <tr><th>Constraint</th><th>What It Does</th><th>Keyboard</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Coincident</td><td>Points touch</td><td>-</td></tr>
+      <tr><td>Horizontal/Vertical</td><td>Lines align to axes</td><td><kbd>H</kbd> / <kbd>V</kbd></td></tr>
+      <tr><td>Perpendicular</td><td>90° angle</td><td>-</td></tr>
+      <tr><td>Parallel</td><td>Lines stay parallel</td><td>-</td></tr>
+      <tr><td>Tangent</td><td>Smooth curve transitions</td><td>-</td></tr>
+      <tr><td>Equal</td><td>Same length/radius</td><td><kbd>E</kbd></td></tr>
+      <tr><td>Concentric</td><td>Circles share center</td><td>-</td></tr>
+      <tr><td>Fix/Unfix</td><td>Lock geometry in place</td><td>-</td></tr>
+    </tbody>
+  </table>
+
+  <h4>The Golden Rule: Fully Constrained Sketches</h4>
+  <ul>
+    <li><strong style="color: #22c55e;">Black lines</strong> = fully constrained (GOOD)</li>
+    <li><strong style="color: #3b82f6;">Blue lines</strong> = under-constrained (BAD for parametric design)</li>
+    <li><strong style="color: #ef4444;">Red lines</strong> = over-constrained (ERROR)</li>
+  </ul>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 1.3</span>
+      <span class="exercise-title">Parametric Box Sketch</span>
+    </div>
+    <ol>
+      <li>Create new sketch on XY plane (click XY plane in browser, then Create → Sketch)</li>
+      <li>Draw a Center Rectangle starting at the origin</li>
+      <li>Add dimensions using your parameters: click dimension tool (<kbd>D</kbd>), click a line, type <code>box_length</code> instead of a number</li>
+      <li>Repeat for width using <code>box_width</code></li>
+      <li>Add corner fillets: Sketch → Fillet, select corners, type <code>corner_radius</code></li>
+      <li><strong>Goal:</strong> All lines must be BLACK</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 1.4</span>
+      <span class="exercise-title">Extrude Using Parameters</span>
+    </div>
+    <ol>
+      <li>Finish sketch (click "Finish Sketch")</li>
+      <li>Press <kbd>E</kbd> for Extrude</li>
+      <li>Select your sketch profile</li>
+      <li>For distance, type <code>box_height</code> (not "25")</li>
+      <li>Click OK</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 1.5</span>
+      <span class="exercise-title">Verify Parametric Behavior</span>
+    </div>
+    <ol>
+      <li>Go to Modify → Change Parameters</li>
+      <li>Change <code>box_length</code> to 100mm</li>
+      <li>Click OK</li>
+      <li><strong>Your model should update automatically.</strong> If it doesn't, you hard-coded something.</li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 1 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Can navigate viewport confidently (orbit, pan, zoom)</label></li>
+      <li><label><input type="checkbox" /> Created 5 user parameters before sketching</label></li>
+      <li><label><input type="checkbox" /> Sketch is fully constrained (all black lines)</label></li>
+      <li><label><input type="checkbox" /> Model updates correctly when parameters change</label></li>
+      <li><label><input type="checkbox" /> No hard-coded dimensions anywhere</label></li>
+      <li><label><input type="checkbox" /> Timeline has no errors or warnings</label></li>
+    </ul>
+  </div>
+
+  <h4>📚 Day 1 Resources</h4>
+  <div class="resource-card">
+    <div class="resource-label">Primary (Watch After Attempting Exercises)</div>
+    <p><a href="https://www.youtube.com/watch?v=d3qGQ2utl2A">Product Design Online: Learn Fusion in 30 Days — Day 1</a> — Kevin Kennedy's flagship series, 2023 edition. Best structured beginner content.</p>
+    <p><a href="https://help.autodesk.com/view/fusion360/ENU/courses/">Autodesk Official: Getting Started Learning Path</a> — Official tutorials, good for reference</p>
+  </div>
+  <div class="resource-card">
+    <div class="resource-label">Supplementary</div>
+    <p><a href="https://www.techandespresso.com/">Tech and Espresso: Fusion Quick Start</a> — Tyler Beck's practical, no-fluff approach</p>
+    <p><a href="https://www.autodesk.com/products/fusion-360/blog/parametric-modeling-in-fusion-360-tutorial/">Prusa: Parametric Modeling in Fusion</a> — Mikoláš Zuza's parameters tutorial (3D printing focused)</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 2 -->
+<section class="day-section" id="day2">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>2</span>
+    </div>
+    <div>
+      <div class="day-title">Sketching with Intent & Constraints</div>
+      <div class="day-time">5 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Gain complete control over geometry using constraints, construction lines, and origin-based sketching.</p>
+
+  <h3>🌅 Morning: Geometric Constraints Deep Dive (2 hours)</h3>
+  
+  <div class="pro-tip">
+    <strong>Constraints are MORE important than dimensions.</strong> A well-constrained sketch with few dimensions is better than a poorly-constrained sketch with many dimensions.
+  </div>
+
+  <h4>Sketch Constraints (MEMORIZE THESE)</h4>
+  <table>
+    <thead>
+      <tr><th>Constraint</th><th>What It Does</th><th>Keyboard</th><th>When to Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Coincident</td><td>Points touch</td><td>-</td><td>Connecting geometry</td></tr>
+      <tr><td>Horizontal</td><td>Line parallel to X</td><td><kbd>H</kbd></td><td>Flat surfaces</td></tr>
+      <tr><td>Vertical</td><td>Line parallel to Y</td><td><kbd>V</kbd></td><td>Upright surfaces</td></tr>
+      <tr><td>Perpendicular</td><td>90° angle</td><td>-</td><td>Corners</td></tr>
+      <tr><td>Parallel</td><td>Lines stay parallel</td><td>-</td><td>Consistent spacing</td></tr>
+      <tr><td>Tangent</td><td>Smooth curve transitions</td><td>-</td><td>Fillets, arcs</td></tr>
+      <tr><td>Equal</td><td>Same length/radius</td><td><kbd>E</kbd></td><td>Symmetry, consistency</td></tr>
+      <tr><td>Concentric</td><td>Circles share center</td><td>-</td><td>Holes, bosses</td></tr>
+      <tr><td>Midpoint</td><td>Point at center of line</td><td>-</td><td>Centering</td></tr>
+      <tr><td>Fix/Unfix</td><td>Lock geometry in place</td><td>-</td><td>Reference points</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Construction Geometry — Your Secret Weapon</h3>
+  <p>Press <kbd>X</kbd> to toggle any line to construction (dashed). Construction lines:</p>
+  <ul>
+    <li>Don't become part of the final profile</li>
+    <li>Perfect for centerlines, reference angles, symmetry axes</li>
+    <li>Help constrain without adding geometry</li>
+  </ul>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 2.1</span>
+      <span class="exercise-title">Mounting Plate with Parametric Holes</span>
+    </div>
+    <div class="params">
+<pre><code>plate_length = 80 mm
+plate_width = 50 mm
+plate_thickness = 4 mm
+hole_diameter = 5 mm
+hole_inset = 8 mm
+corner_fillet = 3 mm</code></pre>
+    </div>
+    <ol>
+      <li>Sketch centered rectangle on XY plane using <code>plate_length</code> and <code>plate_width</code></li>
+      <li>Draw construction lines from center to corners (for reference)</li>
+      <li>Add 4 circles for mounting holes</li>
+      <li>Constrain holes: <code>hole_inset</code> from each edge (use dimension from edge, not absolute position)</li>
+      <li>Make all holes Equal to each other (select all 4, press <kbd>E</kbd>)</li>
+      <li>Add corner fillets using <code>corner_fillet</code></li>
+      <li>Extrude using <code>plate_thickness</code></li>
+    </ol>
+    <div class="pro-tip">
+      <strong>Key Learning:</strong> The holes are positioned RELATIVE to edges. If you change <code>plate_length</code>, holes move with it.
+    </div>
+  </div>
+
+  <h3>🌆 Afternoon: Projecting & Referencing Geometry (1.5 hours)</h3>
+  <p><strong>Project</strong> brings existing geometry into your sketch as reference.</p>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 2.2</span>
+      <span class="exercise-title">Adding Features to Existing Geometry</span>
+    </div>
+    <ol>
+      <li>Take your mounting plate from Exercise 2.1</li>
+      <li>Create a new sketch on the TOP face of the plate</li>
+      <li>Use Sketch → Project/Include → Project to bring the edges into your sketch</li>
+      <li>Sketch a centered boss (raised cylinder) for a component to sit on</li>
+      <li>Constrain the boss to be centered using the projected edges</li>
+      <li>Extrude the boss 6mm</li>
+    </ol>
+  </div>
+
+  <h3>🌙 Late Afternoon: Symmetry & Mirror (1.5 hours)</h3>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 2.3</span>
+      <span class="exercise-title">Symmetric Bracket</span>
+    </div>
+    <div class="params">
+<pre><code>bracket_height = 40 mm
+bracket_base = 60 mm
+bracket_thickness = 5 mm
+slot_width = 10 mm
+slot_height = 20 mm</code></pre>
+    </div>
+    <ol>
+      <li>Sketch on XZ plane (side view)</li>
+      <li>Draw a vertical construction line on the Y-axis (this is your mirror line)</li>
+      <li>Sketch HALF of an L-bracket profile on one side</li>
+      <li>Use Sketch → Mirror to create the other half</li>
+      <li>Add a slot cutout (for cable routing or weight reduction)</li>
+      <li>Extrude using <code>bracket_thickness</code></li>
+    </ol>
+    <div class="pro-tip">
+      <strong>Why Mirror?</strong> Change one side, both sides update. Perfect symmetry guaranteed.
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 2 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> All sketches fully constrained (black)</label></li>
+      <li><label><input type="checkbox" /> Hole locations controlled by parameters (not absolute positions)</label></li>
+      <li><label><input type="checkbox" /> Used construction geometry for reference</label></li>
+      <li><label><input type="checkbox" /> Sketch intent is obvious to someone else reading it</label></li>
+      <li><label><input type="checkbox" /> No redundant or conflicting dimensions</label></li>
+      <li><label><input type="checkbox" /> Mirror/symmetry used where appropriate</label></li>
+    </ul>
+  </div>
+
+  <h4>📚 Day 2 Resources</h4>
+  <div class="resource-card">
+    <div class="resource-label">Primary</div>
+    <p><a href="https://productdesignonline.com/day-17-of-learn-fusion-360-in-30-days-for-complete-beginners-2023-edition-learn-all-12-fusion-360-sketch-constraints/">Product Design Online: Day 17 — All 12 Sketch Constraints</a> — Deep dive on every constraint type with demo file</p>
+    <p><a href="https://www.engineering.com/fusion-360-sketch-basics/">Engineering.com: Fusion Sketch Basics</a> — Excellent written reference</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 3 -->
+<section class="day-section" id="day3">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>3</span>
+    </div>
+    <div>
+      <div class="day-title">Features for Strength & Printability</div>
+      <div class="day-time">5 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Learn which modeling features produce strong, printable parts — and which create problems.</p>
+
+  <h3>🌅 Morning: Essential Modify Tools (2 hours)</h3>
+
+  <table>
+    <thead>
+      <tr><th>Tool</th><th>Use Case</th><th>Shortcut</th><th>Print Consideration</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fillet</td><td>Round edges</td><td><kbd>F</kbd></td><td>External: aesthetic. Internal: CRITICAL for strength</td></tr>
+      <tr><td>Chamfer</td><td>Angled edges</td><td>-</td><td>Better than fillet on bottom edges (no elephant foot)</td></tr>
+      <tr><td>Shell</td><td>Hollow out bodies</td><td>-</td><td>Reduces material, must maintain wall thickness</td></tr>
+      <tr><td>Draft</td><td>Add angle to walls</td><td>-</td><td>Helps with mold release AND print bed adhesion</td></tr>
+      <tr><td>Rib</td><td>Add reinforcement</td><td>-</td><td>Stronger than thick walls, less material</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <strong>CRITICAL FOR 3D PRINTING:</strong>
+    <ul>
+      <li><strong>Bottom edges:</strong> Use <strong>chamfer</strong> (0.5-1mm), not fillet — fillets create elephant's foot issues</li>
+      <li><strong>Internal corners:</strong> ALWAYS fillet — sharp internal corners are stress concentrators and crack points</li>
+      <li><strong>Vertical walls:</strong> Consider 1-2° draft angle for better print quality</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 3.1</span>
+      <span class="exercise-title">Parametric Enclosure</span>
+    </div>
+    <div class="params">
+<pre><code>enclosure_length = 70 mm
+enclosure_width = 50 mm
+enclosure_height = 30 mm
+wall_thickness = 2 mm
+bottom_chamfer = 1 mm
+top_fillet = 2 mm
+internal_fillet = 1.5 mm</code></pre>
+    </div>
+    <p><strong>Build sequence:</strong></p>
+    <ol>
+      <li>Sketch centered rectangle, extrude to <code>enclosure_height</code></li>
+      <li>Shell with <code>wall_thickness</code>, removing TOP face</li>
+      <li>Add <code>bottom_chamfer</code> to ALL bottom external edges</li>
+      <li>Add <code>top_fillet</code> to ALL top external edges</li>
+      <li>Add <code>internal_fillet</code> to ALL internal corners (this is the step most people skip — don't)</li>
+      <li>Use Section Analysis (Inspect → Section Analysis) to verify wall thickness</li>
+    </ol>
+  </div>
+
+  <h3>☀️ Midday: Ribs vs Solid Walls (1.5 hours)</h3>
+  
+  <div class="author-note">
+    <p><strong>The Amateur Mistake:</strong> Making walls thicker for strength.</p>
+    <p><strong>The Professional Approach:</strong> Adding ribs.</p>
+    <p>Ribs use <strong>70% less material</strong> than thick walls while providing equal or better strength.</p>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 3.2</span>
+      <span class="exercise-title">Ribbed Base Plate</span>
+    </div>
+    <div class="params">
+<pre><code>base_length = 100 mm
+base_width = 60 mm
+base_thickness = 3 mm
+rib_height = 8 mm
+rib_thickness = 2 mm
+rib_spacing = 15 mm</code></pre>
+    </div>
+    <ol>
+      <li>Create base plate</li>
+      <li>Sketch rib pattern on bottom face (use Rectangular Pattern in sketch)</li>
+      <li>Extrude ribs downward using <code>rib_height</code></li>
+      <li>Add fillets where ribs meet the base (stress concentration!)</li>
+      <li>Compare: this is MUCH stronger than a 10mm solid plate</li>
+    </ol>
+  </div>
+
+  <h3>🌆 Afternoon: Print Orientation Planning (1.5 hours)</h3>
+  
+  <div class="warning">
+    <strong>Layer lines are your weakest point.</strong> Parts break along layer boundaries.
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Load Direction</th><th>Best Print Orientation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tension/pulling</td><td>Layers perpendicular to force</td></tr>
+      <tr><td>Compression</td><td>Layers perpendicular to force</td></tr>
+      <tr><td>Bending</td><td>Layers parallel to bend axis</td></tr>
+      <tr><td>Shear</td><td>Avoid shear loads on printed parts</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 3.3</span>
+      <span class="exercise-title">Orientation-Aware Hook</span>
+    </div>
+    <p>Design a wall hook that will hold 5kg. Consider:</p>
+    <ol>
+      <li>Where will the load be applied?</li>
+      <li>Which direction will the hook want to break?</li>
+      <li>How should you orient it for printing?</li>
+    </ol>
+    <div class="params">
+<pre><code>hook_depth = 40 mm
+hook_height = 30 mm
+hook_thickness = 8 mm
+mounting_holes = 4 mm
+wall_plate_width = 50 mm
+wall_plate_height = 60 mm</code></pre>
+    </div>
+    <p>Design the hook, then sketch (on paper or in Fusion) how you would orient it on the print bed and WHY.</p>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 3 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Walls meet minimum print thickness (1.2mm+ for PLA)</label></li>
+      <li><label><input type="checkbox" /> No sharp internal corners (all filleted)</label></li>
+      <li><label><input type="checkbox" /> Bottom edges chamfered, top edges filleted</label></li>
+      <li><label><input type="checkbox" /> Ribs used instead of excessive wall thickness</label></li>
+      <li><label><input type="checkbox" /> Part can print flat without supports (or supports are minimal)</label></li>
+      <li><label><input type="checkbox" /> Feature order in timeline is logical</label></li>
+      <li><label><input type="checkbox" /> Section analysis performed to verify wall thickness</label></li>
+    </ul>
+  </div>
+
+  <h4>📚 Day 3 Resources</h4>
+  <div class="resource-card">
+    <div class="resource-label">Primary</div>
+    <p><a href="https://www.techandespresso.com/blog/using-chamfers-fillets-fusion-360-3d-print-strength">Tech and Espresso: Chamfers & Fillets for 3D Print Strength</a> — Exactly what you need for print-optimized design</p>
+    <p><a href="https://www.youtube.com/c/CNCKitchen">CNC Kitchen: Strength of 3D Printed Parts</a> — Stefan's engineering tests on geometry vs strength</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 4 -->
+<section class="day-section" id="day4">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>4</span>
+    </div>
+    <div>
+      <div class="day-title">Components, Assemblies & Tolerances</div>
+      <div class="day-time">5-6 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Design multi-part models that actually fit together in the real world.</p>
+
+  <h3>🌅 Morning: Bodies vs Components — The Critical Distinction (1.5 hours)</h3>
+
+  <table>
+    <thead>
+      <tr><th>Concept</th><th>What It Is</th><th>When to Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Body</strong></td><td>Dumb geometry, no relationships</td><td>Single-piece designs, boolean operations</td></tr>
+      <tr><td><strong>Component</strong></td><td>Smart container with own origin, timeline</td><td>Multi-part assemblies, anything that moves</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <strong>Rule:</strong> If it's a separate physical part, it MUST be a component.
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 4.1</span>
+      <span class="exercise-title">Component Structure Setup</span>
+    </div>
+    <ol>
+      <li>Create new design</li>
+      <li>IMMEDIATELY right-click the top-level component → "Create Component"</li>
+      <li>Name it "Box_Base"</li>
+      <li>Create another component named "Box_Lid"</li>
+      <li>Notice: each component has its own origin in the browser</li>
+    </ol>
+    <div class="pro-tip">
+      <strong>Why This Matters:</strong> Components can be moved independently, exported as separate STL files, reused in other designs, and animated with joints.
+    </div>
+  </div>
+
+  <h3>☀️ Midday: Tolerances — The #1 Reason Parts Don't Fit (2 hours)</h3>
+  
+  <div class="pro-tip">
+    <strong>Create these as GLOBAL parameters you'll reuse:</strong>
+  </div>
+  
+  <div class="params">
+<pre><code>clearance_press = -0.1 mm
+clearance_snug = 0.05 mm
+clearance_sliding = 0.25 mm
+clearance_loose = 0.5 mm
+clearance_hinge = 0.4 mm</code></pre>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Fit Type</th><th>Clearance</th><th>Use Case</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Press Fit</td><td>-0.1 to -0.2mm</td><td>Permanent assembly</td><td>Bearing into housing</td></tr>
+      <tr><td>Snug Fit</td><td>0.0 to 0.1mm</td><td>Friction hold, removable</td><td>Battery cover</td></tr>
+      <tr><td>Sliding Fit</td><td>0.2 to 0.3mm</td><td>Moving parts</td><td>Drawer</td></tr>
+      <tr><td>Loose Fit</td><td>0.4mm+</td><td>Easy assembly</td><td>Decorative cap</td></tr>
+      <tr><td>Hinge/Pivot</td><td>0.4 to 0.6mm</td><td>Rotation</td><td>Living hinge, pin joint</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 4.2</span>
+      <span class="exercise-title">Two-Part Box with Parameterized Clearance</span>
+    </div>
+    <div class="params">
+<pre><code>box_inner_length = 60 mm
+box_inner_width = 40 mm
+box_inner_height = 25 mm
+wall = 2 mm
+lid_height = 8 mm
+lip_depth = 4 mm
+lip_clearance = 0.25 mm  // THIS IS THE KEY</code></pre>
+    </div>
+    <p><strong>Box Base (Component 1):</strong></p>
+    <ol>
+      <li>Activate Box_Base component</li>
+      <li>Sketch and extrude outer shell</li>
+      <li>Shell to create walls</li>
+      <li>Add internal lip for lid to sit on</li>
+    </ol>
+    <p><strong>Box Lid (Component 2):</strong></p>
+    <ol>
+      <li>Activate Box_Lid component</li>
+      <li>Design lid to fit INSIDE the lip</li>
+      <li>Lid dimensions = lip dimensions MINUS <code>lip_clearance</code> on each side</li>
+      <li>Example: if lip opening is 56x36mm, lid insert is <code>56 - lip_clearance*2</code> x <code>36 - lip_clearance*2</code></li>
+    </ol>
+  </div>
+
+  <h3>🌆 Afternoon: Joints & Motion Testing (2 hours)</h3>
+
+  <h4>Joint Types</h4>
+  <table>
+    <thead>
+      <tr><th>Joint</th><th>Degrees of Freedom</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rigid</td><td>0</td><td>Glued parts</td></tr>
+      <tr><td>Revolute</td><td>1 rotation</td><td>Hinges, wheels</td></tr>
+      <tr><td>Slider</td><td>1 translation</td><td>Drawers</td></tr>
+      <tr><td>Cylindrical</td><td>1 rotation + 1 translation</td><td>Piston</td></tr>
+      <tr><td>Pin-Slot</td><td>translation (constrained path)</td><td>Crank mechanism</td></tr>
+      <tr><td>Ball</td><td>3 rotations</td><td>Ball joint</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 4.3</span>
+      <span class="exercise-title">Hinged Lid</span>
+    </div>
+    <ol>
+      <li>Position lid above box using Move/Copy</li>
+      <li>Assemble → Joint</li>
+      <li>Select edge on lid, then matching edge on box</li>
+      <li>Choose "Revolute" joint type</li>
+      <li>Test: drag the lid — it should rotate like a hinge</li>
+      <li>Use "Motion Study" to animate</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 4.4</span>
+      <span class="exercise-title">Interference Check</span>
+    </div>
+    <ol>
+      <li>With lid closed, go to Inspect → Interference</li>
+      <li>Select both components</li>
+      <li>Fusion will highlight any overlapping geometry</li>
+      <li>If interference exists, adjust your clearance parameter and rebuild</li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 4 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Each physical part is a separate component</label></li>
+      <li><label><input type="checkbox" /> Clearance is parameterized (not hard-coded)</label></li>
+      <li><label><input type="checkbox" /> Joints behave correctly when dragged</label></li>
+      <li><label><input type="checkbox" /> Interference check passes</label></li>
+      <li><label><input type="checkbox" /> No cross-component boolean operations (bodies stay in their components)</label></li>
+      <li><label><input type="checkbox" /> Can export each component as separate STL</label></li>
+    </ul>
+  </div>
+
+  <h4>📚 Day 4 Resources</h4>
+  <div class="resource-card">
+    <div class="resource-label">Primary</div>
+    <p><a href="https://www.youtube.com/watch?v=KQNgIfjMr84">Lars Christensen: Assembly and Joints in Fusion</a> — The definitive joints tutorial</p>
+    <p><a href="https://www.youtube.com/watch?v=VVmOtM60VWw">Product Design Online: Snap Fit Design</a> — Practical fit and tolerance strategy</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 5 -->
+<section class="day-section" id="day5">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>5</span>
+    </div>
+    <div>
+      <div class="day-title">Advanced Shape Creation</div>
+      <div class="day-time">5-6 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Confidently create complex yet controlled geometry using revolve, sweep, and loft.</p>
+
+  <h3>🌅 Morning: Revolve — Cylindrical Parts (1.5 hours)</h3>
+  <p><strong>When to Use Revolve:</strong> Anything round — knobs, bottles, vases, threaded parts, handles, cups.</p>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 5.1</span>
+      <span class="exercise-title">Custom Knob</span>
+    </div>
+    <div class="params">
+<pre><code>knob_diameter = 30 mm
+knob_height = 20 mm
+shaft_diameter = 6 mm
+shaft_depth = 12 mm
+grip_indent = 2 mm</code></pre>
+    </div>
+    <ol>
+      <li>Sketch on XZ plane (side view)</li>
+      <li>Draw HALF the knob profile (right side of centerline only)</li>
+      <li>Include: flat top, curved grip section, base flare, center shaft hole</li>
+      <li>Add a vertical construction line on the Y-axis as your revolve axis</li>
+      <li>Create → Revolve, select profile, select axis, 360°</li>
+    </ol>
+    <div class="pro-tip">
+      <strong>Key Insight:</strong> You only sketch HALF because revolve creates the full rotation.
+    </div>
+  </div>
+
+  <h3>☀️ Midday: Sweep — Following a Path (1.5 hours)</h3>
+  <p><strong>When to Use Sweep:</strong> Profiles that follow a curved path — cables, handles, rails, tubes.</p>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 5.2</span>
+      <span class="exercise-title">Cable Clip</span>
+    </div>
+    <div class="params">
+<pre><code>clip_path_radius = 25 mm
+clip_profile_width = 8 mm
+clip_profile_height = 4 mm
+cable_diameter = 5 mm</code></pre>
+    </div>
+    <ol>
+      <li>Sketch the PATH on XY plane: an arc or curved line the clip will follow</li>
+      <li>Create a new sketch on a plane PERPENDICULAR to the path start</li>
+      <li>Sketch the PROFILE: the cross-section of the clip (rectangle with semicircle cutout for cable)</li>
+      <li>Create → Sweep, select profile, select path</li>
+      <li>The profile "sweeps" along the path</li>
+    </ol>
+  </div>
+
+  <h3>🌆 Afternoon: Loft — Smooth Transitions (2 hours)</h3>
+  <p><strong>When to Use Loft:</strong> Connecting different shapes smoothly — ergonomic grips, transitions, organic forms.</p>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 5.3</span>
+      <span class="exercise-title">Ergonomic Tool Handle</span>
+    </div>
+    <div class="params">
+<pre><code>handle_length = 100 mm
+bottom_width = 25 mm
+bottom_depth = 18 mm
+middle_width = 22 mm
+middle_depth = 28 mm
+top_diameter = 18 mm</code></pre>
+    </div>
+    <ol>
+      <li>Create sketch on XY plane: rounded rectangle <code>bottom_width</code> x <code>bottom_depth</code></li>
+      <li>Construct → Offset Plane, 50mm up</li>
+      <li>Create sketch: ellipse <code>middle_width</code> x <code>middle_depth</code></li>
+      <li>Construct → Offset Plane, 100mm up from origin</li>
+      <li>Create sketch: circle <code>top_diameter</code></li>
+      <li>Create → Loft, select all three profiles in order</li>
+      <li>Optional: add guide rails for more control over the transition shape</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 5.4</span>
+      <span class="exercise-title">Section Analysis</span>
+    </div>
+    <ol>
+      <li>Inspect → Section Analysis</li>
+      <li>Drag the section plane through your lofted handle</li>
+      <li>Check for: thin walls, unexpected geometry, printability issues</li>
+      <li>This is how professionals validate complex shapes</li>
+    </ol>
+  </div>
+
+  <h3>🌙 Late Afternoon: Threads (1 hour)</h3>
+  
+  <div class="warning">
+    <strong>For 3D Printing Threads:</strong>
+    <ul>
+      <li>Use MODELED threads (actual geometry), not cosmetic</li>
+      <li>Scale thread diameter up 2-5% for tolerance</li>
+      <li>Minimum M4 for FDM (smaller threads don't print well)</li>
+      <li>Print threads vertically for best results</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 5.5</span>
+      <span class="exercise-title">Threaded Bottle Cap</span>
+    </div>
+    <div class="params">
+<pre><code>bottle_od = 30 mm
+bottle_id = 26 mm
+thread_pitch = 3 mm
+cap_height = 15 mm
+thread_clearance = 0.3 mm</code></pre>
+    </div>
+    <ol>
+      <li>Create bottle neck with external threads (Create → Thread, check "Modeled")</li>
+      <li>Create cap as separate component</li>
+      <li>Cap internal diameter = <code>bottle_od + thread_clearance*2</code></li>
+      <li>Add internal threads to cap (same pitch, check "Modeled")</li>
+      <li>Test fit with joint, then PRINT AND TEST</li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 5 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Lofts are smooth and fully editable</label></li>
+      <li><label><input type="checkbox" /> No thin or fragile edges in complex geometry</label></li>
+      <li><label><input type="checkbox" /> Overhangs kept under 45° where possible</label></li>
+      <li><label><input type="checkbox" /> All geometry remains parametric</label></li>
+      <li><label><input type="checkbox" /> Section analysis performed on complex shapes</label></li>
+      <li><label><input type="checkbox" /> Threads are modeled (not cosmetic) for printing</label></li>
+    </ul>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 6 -->
+<section class="day-section" id="day6">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>6</span>
+    </div>
+    <div>
+      <div class="day-title">Optimization & Organic Shapes</div>
+      <div class="day-time">5-6 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Optimize designs for strength, weight, and print efficiency. Introduction to sculpting.</p>
+
+  <h3>🌅 Morning: Material Reduction & Strength Optimization (2 hours)</h3>
+  
+  <div class="author-note">
+    <p><strong>The Amateur Mistake:</strong> Adding material for strength.</p>
+    <p><strong>The Professional Approach:</strong> Strategic geometry.</p>
+  </div>
+
+  <h4>Optimization Strategies</h4>
+  <table>
+    <thead>
+      <tr><th>Strategy</th><th>Material Saved</th><th>Strength Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Shell instead of solid</td><td>60-80%</td><td>Minimal loss if walls adequate</td></tr>
+      <tr><td>Ribs instead of thick walls</td><td>50-70%</td><td>Often INCREASES strength</td></tr>
+      <tr><td>Honeycomb infill areas</td><td>40-60%</td><td>Good for non-structural areas</td></tr>
+      <tr><td>Topology-inspired shapes</td><td>30-50%</td><td>Requires understanding load paths</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 6.1</span>
+      <span class="exercise-title">Redesign for Efficiency</span>
+    </div>
+    <p>Take your Day 3 enclosure and:</p>
+    <ol>
+      <li>Identify non-structural areas</li>
+      <li>Add ventilation holes or weight-reduction pockets</li>
+      <li>Replace any thick sections with ribbed sections</li>
+      <li>Target: 30-50% material reduction</li>
+      <li>Verify with Section Analysis that walls remain adequate</li>
+    </ol>
+  </div>
+
+  <h3>☀️ Midday: Print Orientation & Layer Strength (1.5 hours)</h3>
+  
+  <div class="warning">
+    <strong>Critical Concept:</strong> FDM parts are 50-80% weaker along layer lines than across them.
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 6.2</span>
+      <span class="exercise-title">Orientation Analysis</span>
+    </div>
+    <p>Take your Day 3 hook design:</p>
+    <ol>
+      <li>Identify the primary load direction</li>
+      <li>Sketch three different print orientations</li>
+      <li>For each, mark where layer lines would be</li>
+      <li>Determine which orientation puts layers PERPENDICULAR to the load</li>
+      <li>Document your reasoning</li>
+    </ol>
+  </div>
+
+  <h4>Print Orientation Decision Matrix</h4>
+  <table>
+    <thead>
+      <tr><th>Part Feature</th><th>Preferred Orientation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Holes (need to be round)</td><td>Hole axis vertical</td></tr>
+      <tr><td>Threads</td><td>Thread axis vertical</td></tr>
+      <tr><td>Snap fits</td><td>Flex direction across layers</td></tr>
+      <tr><td>Thin walls</td><td>Wall plane vertical</td></tr>
+      <tr><td>Overhangs</td><td>Minimize or face up</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🌆 Afternoon: Form Environment — Organic Sculpting (2 hours)</h3>
+  <p><strong>When to Use Sculpt (Form Mode):</strong> Ergonomic grips, organic shapes, artistic designs, anything that doesn't fit boxes and cylinders.</p>
+
+  <h4>Key Sculpt Tools</h4>
+  <table>
+    <thead>
+      <tr><th>Tool</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Edit Form</td><td>Push/pull faces, edges, vertices</td></tr>
+      <tr><td>Insert Edge</td><td>Add detail/control loops</td></tr>
+      <tr><td>Subdivide</td><td>Increase mesh density</td></tr>
+      <tr><td>Crease</td><td>Create sharp edges</td></tr>
+      <tr><td>Bridge</td><td>Connect separate faces</td></tr>
+      <tr><td>Thicken</td><td>Convert surface to solid</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 6.3</span>
+      <span class="exercise-title">Ergonomic Grip</span>
+    </div>
+    <ol>
+      <li>Create → Form → Box (this enters Form mode)</li>
+      <li>Set divisions: 4 x 4 x 8</li>
+      <li>Use Edit Form to pull and shape into a comfortable grip</li>
+      <li>Enable Symmetry (Modify → Symmetry → Mirror - Internal)</li>
+      <li>Subdivide areas needing more detail</li>
+      <li>When satisfied, click "Finish Form"</li>
+      <li>The T-Spline converts to a solid body</li>
+    </ol>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="exercise-badge">Exercise 6.4</span>
+      <span class="exercise-title">Combining Sculpt with Solid</span>
+    </div>
+    <ol>
+      <li>Create a solid base with mounting features (screw holes, flat bottom)</li>
+      <li>Create a sculpted grip section</li>
+      <li>Use Modify → Combine to join them</li>
+      <li>Add fillets at the transition for smooth blend</li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">✅</div>
+      <div class="checklist-title">Day 6 Completion Checklist</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Reduced material by 30%+ from naive design</label></li>
+      <li><label><input type="checkbox" /> Print orientation chosen for maximum strength</label></li>
+      <li><label><input type="checkbox" /> Ribs used effectively where appropriate</label></li>
+      <li><label><input type="checkbox" /> Sculpted geometry is smooth and printable</label></li>
+      <li><label><input type="checkbox" /> Design reflects understanding of layer behavior</label></li>
+      <li><label><input type="checkbox" /> Part can still be modified parametrically (where applicable)</label></li>
+    </ul>
+  </div>
+</section>
+
+<hr>
+
+<!-- DAY 7 -->
+<section class="day-section" id="day7">
+  <div class="day-header">
+    <div class="day-number">
+      <span>Day</span>
+      <span>7</span>
+    </div>
+    <div>
+      <div class="day-title">End-to-End Design Confidence</div>
+      <div class="day-time">6-8 hours</div>
+    </div>
+  </div>
+
+  <p><strong>Objective:</strong> Apply a repeatable workflow to solve any design challenge from blank canvas to printed part.</p>
+
+  <h3>🔄 The Professional Workflow (Use This Every Time)</h3>
+  
+  <div class="params">
+<pre><code>1. DEFINE    → What problem am I solving? What are the constraints?
+2. PARAMETERS → Create all dimensions as parameters BEFORE sketching
+3. SKETCH    → Fully constrained, origin-based, single-purpose sketches
+4. MODEL     → Logical feature order, components for separate parts
+5. VALIDATE  → Section analysis, interference check, wall thickness
+6. OPTIMIZE  → Reduce material, add ribs, consider print orientation
+7. EXPORT    → STL in mm, one file per component
+8. TEST      → Print, measure, adjust parameters, repeat</code></pre>
+  </div>
+
+  <h3>🎯 The Final Test: Design a Functional Multi-Part Product</h3>
+  <p><strong>Choose ONE project. Complete it fully.</strong></p>
+
+  <hr>
+
+  <div class="exercise" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%); border-color: rgba(245, 158, 11, 0.3);">
+    <div class="exercise-header">
+      <span class="exercise-badge" style="background: var(--warning);">Option A</span>
+      <span class="exercise-title">Adjustable Phone/Tablet Stand</span>
+    </div>
+    <p><strong>Requirements:</strong></p>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Adjustable viewing angle (45° to 75°) using revolute joint</label></li>
+      <li><label><input type="checkbox" /> Cable routing channel (minimum 8mm diameter path)</label></li>
+      <li><label><input type="checkbox" /> Non-slip base (design recesses for rubber feet or TPU pads)</label></li>
+      <li><label><input type="checkbox" /> Foldable for portability (collapses to under 15mm thick)</label></li>
+      <li><label><input type="checkbox" /> Prints without supports (design for it — no overhangs > 45°)</label></li>
+      <li><label><input type="checkbox" /> All dimensions parametric (can resize for different devices)</label></li>
+      <li><label><input type="checkbox" /> Minimum 2 components with proper clearances</label></li>
+    </ul>
+    <div class="params">
+<pre><code>device_width = 80 mm (adjustable for phone vs tablet)
+device_thickness = 12 mm
+stand_depth = 100 mm
+angle_min = 45 deg
+angle_max = 75 deg
+cable_channel = 8 mm
+rubber_foot_diameter = 10 mm</code></pre>
+    </div>
+  </div>
+
+  <div class="exercise" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%); border-color: rgba(16, 185, 129, 0.3);">
+    <div class="exercise-header">
+      <span class="exercise-badge" style="background: var(--accent);">Option B</span>
+      <span class="exercise-title">Modular Desk Organizer System</span>
+    </div>
+    <p><strong>Requirements:</strong></p>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Minimum 3 different module types (pen holder, card holder, tray)</label></li>
+      <li><label><input type="checkbox" /> Modules connect via dovetail or snap-fit system</label></li>
+      <li><label><input type="checkbox" /> Wall-mountable option with keyhole slots</label></li>
+      <li><label><input type="checkbox" /> One module includes a sliding drawer</label></li>
+      <li><label><input type="checkbox" /> All modules share common connection parameters</label></li>
+      <li><label><input type="checkbox" /> Fully parametric (resize any module by changing parameters)</label></li>
+      <li><label><input type="checkbox" /> Each module prints without supports</label></li>
+    </ul>
+    <div class="params">
+<pre><code>module_unit = 40 mm (base grid size)
+wall = 2 mm
+dovetail_width = 8 mm
+dovetail_depth = 4 mm
+dovetail_clearance = 0.25 mm
+drawer_clearance = 0.3 mm
+keyhole_large = 8 mm
+keyhole_small = 4 mm</code></pre>
+    </div>
+  </div>
+
+  <div class="exercise" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.05) 100%); border-color: rgba(139, 92, 246, 0.3);">
+    <div class="exercise-header">
+      <span class="exercise-badge" style="background: #8b5cf6;">Option C</span>
+      <span class="exercise-title">Mechanical Fidget Toy / Gear Demo</span>
+    </div>
+    <p><strong>Requirements:</strong></p>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Minimum 2 moving parts (gears, cams, or linkages)</label></li>
+      <li><label><input type="checkbox" /> Snap-fit or pin assembly (no glue or screws required)</label></li>
+      <li><label><input type="checkbox" /> All parts printable on single build plate</label></li>
+      <li><label><input type="checkbox" /> Smooth motion when assembled</label></li>
+      <li><label><input type="checkbox" /> Includes a base/frame component</label></li>
+      <li><label><input type="checkbox" /> Tolerances tested and documented</label></li>
+      <li><label><input type="checkbox" /> Assembly sequence is logical</label></li>
+    </ul>
+    <div class="params">
+<pre><code>gear_module = 2 mm (tooth size)
+gear_teeth_small = 12
+gear_teeth_large = 24
+shaft_diameter = 5 mm
+shaft_clearance = 0.3 mm
+frame_thickness = 4 mm
+snap_fit_clearance = 0.2 mm</code></pre>
+    </div>
+  </div>
+
+  <h3>📋 Project Execution Checklist</h3>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">🎬</div>
+      <div class="checklist-title">Before You Start</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Design intent written in one sentence</label></li>
+      <li><label><input type="checkbox" /> All parameters created</label></li>
+      <li><label><input type="checkbox" /> Print orientation decided</label></li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">🔧</div>
+      <div class="checklist-title">During Modeling</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> All sketches fully constrained</label></li>
+      <li><label><input type="checkbox" /> Each part is a component</label></li>
+      <li><label><input type="checkbox" /> Clearances use parameters</label></li>
+      <li><label><input type="checkbox" /> No hard-coded dimensions</label></li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">📤</div>
+      <div class="checklist-title">Before Export</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Section analysis on critical areas</label></li>
+      <li><label><input type="checkbox" /> Interference check passes</label></li>
+      <li><label><input type="checkbox" /> Wall thickness verified (1.2mm+ minimum)</label></li>
+      <li><label><input type="checkbox" /> Overhangs under 45° (or supports planned)</label></li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-icon">🖨️</div>
+      <div class="checklist-title">After Printing</div>
+    </div>
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> Parts fit together</label></li>
+      <li><label><input type="checkbox" /> Motion works (if applicable)</label></li>
+      <li><label><input type="checkbox" /> Tolerances documented for YOUR printer</label></li>
+      <li><label><input type="checkbox" /> Parameters adjusted based on test fit</label></li>
+    </ul>
+  </div>
+
+  <h3>📦 Day 7 Deliverable</h3>
+  <ul>
+    <li>Complete Fusion source file (.f3d)</li>
+    <li>Individual STL files for each component</li>
+    <li>Printed and assembled functional product</li>
+    <li>Brief notes on what tolerances worked</li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- Final Self-Assessment -->
+<div class="final-section">
+  <h2>🏆 Final Self-Assessment</h2>
+  <p style="position: relative; z-index: 1;">If you can answer YES to all of these, you've achieved the goal:</p>
+  
+  <div class="checklist" style="text-align: left; max-width: 600px; margin: 32px auto; position: relative; z-index: 1;">
+    <ul class="task-list">
+      <li><label><input type="checkbox" /> I can start from a blank file without anxiety</label></li>
+      <li><label><input type="checkbox" /> I create parameters BEFORE sketching</label></li>
+      <li><label><input type="checkbox" /> My sketches are always fully constrained</label></li>
+      <li><label><input type="checkbox" /> I understand when to use bodies vs components</label></li>
+      <li><label><input type="checkbox" /> I know how to set tolerances for my printer</label></li>
+      <li><label><input type="checkbox" /> I can design parts that print without supports</label></li>
+      <li><label><input type="checkbox" /> I consider layer orientation for strength</label></li>
+      <li><label><input type="checkbox" /> I can use revolve, sweep, and loft confidently</label></li>
+      <li><label><input type="checkbox" /> I can export clean STL files</label></li>
+      <li><label><input type="checkbox" /> I have a repeatable workflow I trust</label></li>
+    </ul>
+  </div>
+  
+  <p style="font-size: 1.25rem; font-weight: 600; color: var(--accent); position: relative; z-index: 1;"><strong>Congratulations.</strong> You now have the foundation to design anything.</p>
+  <p style="color: var(--text-muted); position: relative; z-index: 1;">The real learning continues with every project you tackle.</p>
+</div>
+
+<hr>
+
+<!-- Keyboard Shortcuts Cheat Sheet -->
+<h2 id="shortcuts">⌨️ Keyboard Shortcuts Cheat Sheet</h2>
+
+<blockquote>
+  <strong>Note:</strong> Fusion uses the same shortcuts on Mac and Windows, with <kbd>Cmd</kbd> replacing <kbd>Ctrl</kbd>. Both are shown below.
+</blockquote>
+
+<h3>Navigation (Memorize These First)</h3>
+<table>
+  <thead>
+    <tr><th>Action</th><th>Shortcut</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Orbit</td><td>Middle Mouse + Drag</td><td>Most used navigation</td></tr>
+    <tr><td>Pan</td><td>Middle Mouse + Shift</td><td>Move view sideways</td></tr>
+    <tr><td>Zoom</td><td>Scroll Wheel</td><td>Or pinch on trackpad</td></tr>
+    <tr><td>Zoom to Fit</td><td><kbd>F</kbd></td><td>Centers model in view</td></tr>
+    <tr><td>Zoom to Selection</td><td><kbd>F</kbd> (with selection)</td><td>Focus on selected item</td></tr>
+    <tr><td>Home View</td><td><kbd>Shift</kbd> + <kbd>1</kbd></td><td>Return to default view</td></tr>
+    <tr><td>Top View</td><td><kbd>Shift</kbd> + <kbd>2</kbd></td><td>Look down Z axis</td></tr>
+    <tr><td>Front View</td><td><kbd>Shift</kbd> + <kbd>3</kbd></td><td>Look at XZ plane</td></tr>
+    <tr><td>Right View</td><td><kbd>Shift</kbd> + <kbd>4</kbd></td><td>Look at YZ plane</td></tr>
+  </tbody>
+</table>
+
+<h3>Sketch Tools</h3>
+<table>
+  <thead>
+    <tr><th>Action</th><th>Shortcut</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Line</td><td><kbd>L</kbd></td><td>Most basic tool</td></tr>
+    <tr><td>Rectangle</td><td><kbd>R</kbd></td><td>Center or 2-point</td></tr>
+    <tr><td>Circle</td><td><kbd>C</kbd></td><td>Center and radius</td></tr>
+    <tr><td>Arc</td><td><kbd>A</kbd></td><td>3-point arc</td></tr>
+    <tr><td>Dimension</td><td><kbd>D</kbd></td><td>Add/edit dimensions</td></tr>
+    <tr><td>Trim</td><td><kbd>T</kbd></td><td>Remove sketch segments</td></tr>
+    <tr><td>Offset</td><td><kbd>O</kbd></td><td>Parallel copy of edges</td></tr>
+    <tr><td>Construction Toggle</td><td><kbd>X</kbd></td><td>Switch line type</td></tr>
+    <tr><td>Project Geometry</td><td><kbd>P</kbd></td><td>Bring edges into sketch</td></tr>
+    <tr><td>Finish Sketch</td><td><kbd>Esc</kbd></td><td>Or click button</td></tr>
+  </tbody>
+</table>
+
+<h3>Sketch Constraints</h3>
+<table>
+  <thead>
+    <tr><th>Action</th><th>Shortcut</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Horizontal</td><td><kbd>H</kbd></td><td>Constrain to X axis</td></tr>
+    <tr><td>Vertical</td><td><kbd>V</kbd></td><td>Constrain to Y axis</td></tr>
+    <tr><td>Equal</td><td><kbd>E</kbd></td><td>Make lengths/radii equal</td></tr>
+    <tr><td>Perpendicular</td><td>-</td><td>Right-click menu</td></tr>
+    <tr><td>Parallel</td><td>-</td><td>Right-click menu</td></tr>
+    <tr><td>Coincident</td><td>-</td><td>Right-click menu</td></tr>
+    <tr><td>Tangent</td><td>-</td><td>Right-click menu</td></tr>
+    <tr><td>Concentric</td><td>-</td><td>Right-click menu</td></tr>
+  </tbody>
+</table>
+
+<h3>Modeling</h3>
+<table>
+  <thead>
+    <tr><th>Action</th><th>Shortcut</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Extrude</td><td><kbd>E</kbd></td><td>Most used modeling tool</td></tr>
+    <tr><td>Press Pull</td><td><kbd>Q</kbd></td><td>Quick extrude/offset</td></tr>
+    <tr><td>Fillet</td><td><kbd>F</kbd></td><td>Round edges</td></tr>
+    <tr><td>Hole</td><td><kbd>H</kbd></td><td>Parametric holes</td></tr>
+    <tr><td>Move/Copy</td><td><kbd>M</kbd></td><td>Transform bodies</td></tr>
+  </tbody>
+</table>
+
+<h3>General Commands (Mac / Windows)</h3>
+<table>
+  <thead>
+    <tr><th>Action</th><th>Mac</th><th>Windows</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Search Commands</td><td><kbd>S</kbd></td><td><kbd>S</kbd></td><td>Find any command quickly</td></tr>
+    <tr><td>Undo</td><td><kbd>Cmd</kbd> + <kbd>Z</kbd></td><td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td>Step back</td></tr>
+    <tr><td>Redo</td><td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></td><td><kbd>Ctrl</kbd> + <kbd>Y</kbd></td><td>Step forward</td></tr>
+    <tr><td>Delete</td><td><kbd>Fn</kbd> + <kbd>Backspace</kbd></td><td><kbd>Delete</kbd></td><td>Remove selected</td></tr>
+    <tr><td>Hide/Show</td><td><kbd>V</kbd></td><td><kbd>V</kbd></td><td>Toggle visibility</td></tr>
+    <tr><td>Isolate</td><td><kbd>I</kbd></td><td><kbd>I</kbd></td><td>Show only selected</td></tr>
+    <tr><td>Appearance</td><td><kbd>A</kbd></td><td><kbd>A</kbd></td><td>Apply materials</td></tr>
+    <tr><td>Compute All</td><td><kbd>Cmd</kbd> + <kbd>B</kbd></td><td><kbd>Ctrl</kbd> + <kbd>B</kbd></td><td>Rebuild model</td></tr>
+    <tr><td>Save</td><td><kbd>Cmd</kbd> + <kbd>S</kbd></td><td><kbd>Ctrl</kbd> + <kbd>S</kbd></td><td>Save to cloud</td></tr>
+    <tr><td>Export</td><td><kbd>Cmd</kbd> + <kbd>E</kbd></td><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td><td>Export file</td></tr>
+  </tbody>
+</table>
+
+<div class="pro-tip">
+  <strong>Pro Tip for Mac Users:</strong> Seriously consider getting a 3-button mouse. Even a basic $15 mouse will make you 3x faster in Fusion. The trackpad works, but you'll fight it constantly.
+</div>
+
+<hr>
+
+<!-- 3D Printing Design Rules -->
+<h2 id="printing-rules">🖨️ 3D Printing Design Rules — Quick Reference</h2>
+
+<h3>Wall Thickness Minimums</h3>
+<table>
+  <thead>
+    <tr><th>Material</th><th>Absolute Min</th><th>Recommended</th><th>Strong Parts</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>PLA</td><td>0.8mm</td><td>1.2mm</td><td>2.0mm+</td></tr>
+    <tr><td>PETG</td><td>1.0mm</td><td>1.4mm</td><td>2.0mm+</td></tr>
+    <tr><td>ABS</td><td>1.0mm</td><td>1.4mm</td><td>2.0mm+</td></tr>
+    <tr><td>TPU</td><td>1.2mm</td><td>1.6mm</td><td>2.0mm+</td></tr>
+  </tbody>
+</table>
+
+<h3>Tolerances (FDM 0.4mm Nozzle)</h3>
+<table>
+  <thead>
+    <tr><th>Fit Type</th><th>Clearance</th><th>Use Case</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Press Fit</td><td>-0.1 to -0.2mm</td><td>Permanent, friction hold</td></tr>
+    <tr><td>Snug Fit</td><td>0.0 to 0.1mm</td><td>Removable with effort</td></tr>
+    <tr><td>Sliding Fit</td><td>0.2 to 0.3mm</td><td>Parts that move</td></tr>
+    <tr><td>Loose Fit</td><td>0.4 to 0.5mm</td><td>Easy assembly</td></tr>
+    <tr><td>Hinge/Pivot</td><td>0.4 to 0.6mm</td><td>Rotating joints</td></tr>
+    <tr><td>Snap Fit Flex</td><td>≥1.0mm thickness</td><td>Flexible catches</td></tr>
+  </tbody>
+</table>
+
+<h3>Hole Compensation</h3>
+<p>Holes print smaller than designed. Add clearance:</p>
+<table>
+  <thead>
+    <tr><th>Hole Size</th><th>Add to Diameter</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>M2 (2mm)</td><td>+0.3mm</td></tr>
+    <tr><td>M3 (3mm)</td><td>+0.2 to 0.4mm</td></tr>
+    <tr><td>M4 (4mm)</td><td>+0.2 to 0.3mm</td></tr>
+    <tr><td>M5+</td><td>+0.2mm</td></tr>
+  </tbody>
+</table>
+
+<h3>Overhangs & Bridges</h3>
+<table>
+  <thead>
+    <tr><th>Angle from Vertical</th><th>Support Needed?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td style="color: var(--accent);">0-45°</td><td>No</td></tr>
+    <tr><td style="color: var(--warning);">45-60°</td><td>Maybe (test your printer)</td></tr>
+    <tr><td style="color: var(--danger);">60-90°</td><td>Yes</td></tr>
+    <tr><td>Bridges up to 20mm</td><td>Usually OK</td></tr>
+    <tr><td>Bridges 20-50mm</td><td>Risky, may sag</td></tr>
+    <tr><td>Bridges 50mm+</td><td>Will fail</td></tr>
+  </tbody>
+</table>
+
+<h3>Minimum Feature Sizes (0.4mm Nozzle)</h3>
+<table>
+  <thead>
+    <tr><th>Feature</th><th>Minimum</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wall</td><td>0.4mm</td><td>Single extrusion width</td></tr>
+    <tr><td>Hole</td><td>2mm diameter</td><td>Smaller won't be round</td></tr>
+    <tr><td>Embossed text</td><td>8pt+</td><td>Raised letters</td></tr>
+    <tr><td>Engraved text</td><td>12pt+</td><td>Cut-in letters</td></tr>
+    <tr><td>Pin/post</td><td>3mm diameter</td><td>Smaller breaks easily</td></tr>
+    <tr><td>Gap/slot</td><td>0.4mm</td><td>Minimum clearance</td></tr>
+    <tr><td>Rib thickness</td><td>1.0mm</td><td>For structural ribs</td></tr>
+  </tbody>
+</table>
+
+<h3>Layer Orientation for Strength</h3>
+<table>
+  <thead>
+    <tr><th>Load Type</th><th>Layer Orientation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tension (pulling)</td><td>Perpendicular to force</td></tr>
+    <tr><td>Compression</td><td>Perpendicular to force</td></tr>
+    <tr><td>Bending</td><td>Parallel to bend axis</td></tr>
+    <tr><td style="color: var(--danger);">Shear</td><td>AVOID — weakest mode</td></tr>
+  </tbody>
+</table>
+
+<div class="warning">
+  <strong>Rule of Thumb:</strong> Parts are 50-80% weaker along layer lines. Orient so primary loads go ACROSS layers, not along them.
+</div>
+
+<hr>
+
+<!-- Common Mistakes -->
+<h2 id="mistakes">🚫 Common Mistakes & How to Avoid Them</h2>
+
+<table>
+  <thead>
+    <tr><th>Mistake</th><th>Why It's Bad</th><th>Solution</th></tr>
+  </thead>
+  <tbody>
+    <tr><td style="color: var(--danger);">Under-constrained sketches</td><td>Model behaves unpredictably</td><td>Always aim for black (fully constrained)</td></tr>
+    <tr><td style="color: var(--danger);">Hard-coded dimensions</td><td>Can't update design easily</td><td>Use parameters for everything</td></tr>
+    <tr><td style="color: var(--warning);">Ignoring the timeline</td><td>Miss opportunities to edit</td><td>Roll back, edit features, reorder</td></tr>
+    <tr><td style="color: var(--danger);">Bodies instead of components</td><td>Can't export separately, no joints</td><td>Every physical part = component</td></tr>
+    <tr><td style="color: var(--danger);">Forgetting tolerances</td><td>Parts don't fit</td><td>Test early, parameterize clearances</td></tr>
+    <tr><td style="color: var(--warning);">Designing impossible overhangs</td><td>Print fails or needs heavy supports</td><td>Think about orientation from start</td></tr>
+    <tr><td style="color: var(--danger);">Sharp internal corners</td><td>Stress concentrators, cracks</td><td>Always fillet internal corners</td></tr>
+    <tr><td style="color: var(--warning);">Skipping section analysis</td><td>Hidden thin walls, problems</td><td>Inspect before export</td></tr>
+    <tr><td style="color: var(--warning);">Not testing fit</td><td>Waste filament on bad designs</td><td>Print tolerance test pieces first</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- Troubleshooting Guide -->
+<h2 id="troubleshooting">🔧 Troubleshooting Guide — When Things Go Wrong</h2>
+
+<h3>Sketch Problems</h3>
+<table>
+  <thead>
+    <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sketch stays blue</td><td>Under-constrained</td><td>Add constraints (coincident, horizontal, vertical) until black</td></tr>
+    <tr><td>Sketch turns red</td><td>Over-constrained</td><td>Undo last constraint, or delete redundant dimensions</td></tr>
+    <tr><td>Can't extrude sketch</td><td>Profile not closed</td><td>Zoom in, look for tiny gaps. Use Trim (<kbd>T</kbd>) to clean up</td></tr>
+    <tr><td>Dimension won't accept parameter</td><td>Typo in parameter name</td><td>Check Modify → Change Parameters for exact spelling</td></tr>
+    <tr><td>Sketch geometry moves unexpectedly</td><td>Missing constraints</td><td>Add Fix constraint to anchor points, or constrain to origin</td></tr>
+  </tbody>
+</table>
+
+<h3>Modeling Problems</h3>
+<table>
+  <thead>
+    <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Fillet fails</td><td>Radius too large for geometry</td><td>Reduce radius, or fillet in different order</td></tr>
+    <tr><td>Shell fails</td><td>Geometry too complex</td><td>Shell earlier in timeline, before fillets</td></tr>
+    <tr><td>Extrude creates wrong shape</td><td>Multiple profiles selected</td><td>Click to deselect, then select only desired profile</td></tr>
+    <tr><td>Timeline shows yellow warning</td><td>Feature needs update</td><td>Right-click → Compute, or Modify → Compute All</td></tr>
+    <tr><td>Timeline shows red error</td><td>Feature failed</td><td>Roll back, fix underlying geometry, roll forward</td></tr>
+    <tr><td>Can't select face/edge</td><td>Wrong selection filter</td><td>Check Selection Filters in bottom toolbar</td></tr>
+  </tbody>
+</table>
+
+<h3>Assembly Problems</h3>
+<table>
+  <thead>
+    <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Joint doesn't work</td><td>Wrong geometry selected</td><td>Delete joint, reselect correct faces/edges</td></tr>
+    <tr><td>Parts intersect</td><td>Insufficient clearance</td><td>Increase clearance parameter, rebuild</td></tr>
+    <tr><td>Can't move component</td><td>Component is grounded</td><td>Right-click → Unground, or ground a different component</td></tr>
+    <tr><td>Components fused together</td><td>Used Combine instead of Joint</td><td>Undo, use Assemble → Joint instead</td></tr>
+  </tbody>
+</table>
+
+<h3>Export Problems</h3>
+<table>
+  <thead>
+    <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>STL has holes</td><td>Non-manifold geometry</td><td>Use Inspect → Section Analysis to find issues</td></tr>
+    <tr><td>STL wrong size</td><td>Wrong units</td><td>Export with "millimeters" selected</td></tr>
+    <tr><td>Multiple bodies in one STL</td><td>Bodies not separated</td><td>Export each body individually, or use "One File Per Body"</td></tr>
+    <tr><td>STL file huge</td><td>Too many triangles</td><td>Reduce refinement in export settings</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- Resources -->
+<h2 id="resources">📚 Recommended Learning Resources</h2>
+
+<h3>Official Autodesk</h3>
+<div class="resource-card">
+  <p><a href="https://help.autodesk.com/view/fusion360/ENU/courses/">Fusion Learning Paths</a> — Structured official tutorials</p>
+  <p><a href="https://www.youtube.com/user/AutodeskFusion360">Fusion YouTube</a> — Official channel</p>
+</div>
+
+<h3>YouTube Instructors (Quality Vetted)</h3>
+<table>
+  <thead>
+    <tr><th>Channel</th><th>Best For</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Product Design Online</strong></td><td>Systematic learning, best practices</td></tr>
+    <tr><td><strong>Lars Christensen</strong></td><td>Fundamentals, Autodesk insider tips</td></tr>
+    <tr><td><strong>Maker's Muse</strong></td><td>3D printing-focused design</td></tr>
+    <tr><td><strong>Teaching Tech</strong></td><td>Practical printing + CAD</td></tr>
+    <tr><td><strong>CNC Kitchen</strong></td><td>Engineering, strength testing</td></tr>
+  </tbody>
+</table>
+
+<h3>Practice Resources</h3>
+<div class="resource-card">
+  <p><a href="https://grabcad.com/">GrabCAD</a> — Download models to study</p>
+  <p><a href="https://www.thingiverse.com/">Thingiverse</a> — Find things to remix</p>
+  <p><a href="https://www.printables.com/">Printables</a> — Community designs</p>
+</div>
+
+<h3>Tolerance Testing</h3>
+<div class="pro-tip">
+  Before any serious project, print a tolerance test:
+  <ul>
+    <li>Search "tolerance test" on Thingiverse/Printables</li>
+    <li>Print it with YOUR printer and YOUR settings</li>
+    <li>Measure actual clearances</li>
+    <li>Use those numbers in your designs</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- Expert Instructor's Final Notes -->
+<h2>🎓 Expert Instructor's Final Notes</h2>
+
+<h3>The 3 Skills That Separate Amateurs from Professionals</h3>
+<p>After teaching hundreds of students, I've identified the three skills that most clearly separate those who "know Fusion" from those who can actually design:</p>
+
+<ol>
+  <li><strong style="color: var(--primary);">Parametric Discipline</strong> — Professionals NEVER hard-code dimensions. Every number is a parameter with a meaningful name. This isn't about being fancy — it's about being able to iterate quickly when (not if) requirements change.</li>
+  <li><strong style="color: var(--accent);">Constraint Thinking</strong> — Amateurs dimension everything. Professionals constrain relationships. "These holes are always 10mm from the edge" is better than "this hole is at X=45mm." When the part size changes, the holes move correctly.</li>
+  <li><strong style="color: var(--warning);">Print-First Mindset</strong> — Every design decision considers: "How will this print? Where are the layer lines? What's the weakest point?" This becomes automatic with practice.</li>
+</ol>
+
+<h3>Common Failure Points (Watch For These)</h3>
+<table>
+  <thead>
+    <tr><th>Day</th><th>Where Students Get Stuck</th><th>How to Push Through</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Sketches stay blue (under-constrained)</td><td>Add constraints until black. Every. Single. Time.</td></tr>
+    <tr><td>2</td><td>Holes don't move when plate resizes</td><td>Dimension from edges, not absolute coordinates</td></tr>
+    <tr><td>3</td><td>Internal corners not filleted</td><td>Make it a habit — fillet internals BEFORE externals</td></tr>
+    <tr><td>4</td><td>Parts don't fit when printed</td><td>Print tolerance test FIRST, use YOUR numbers</td></tr>
+    <tr><td>5</td><td>Lofts create weird geometry</td><td>Use section analysis, add guide rails if needed</td></tr>
+    <tr><td>6</td><td>Sculpted shapes won't print</td><td>Check wall thickness, avoid extreme overhangs</td></tr>
+    <tr><td>7</td><td>Project feels overwhelming</td><td>Break into components, tackle one at a time</td></tr>
+  </tbody>
+</table>
+
+<h3>The "Aha" Moments to Expect</h3>
+<ul>
+  <li><strong>Day 1-2:</strong> "Oh, THAT'S why my sketches were unpredictable before"</li>
+  <li><strong>Day 3:</strong> "I finally understand why my prints kept breaking"</li>
+  <li><strong>Day 4:</strong> "So THAT'S how tolerances actually work"</li>
+  <li><strong>Day 5:</strong> "I can make shapes I never thought possible"</li>
+  <li><strong>Day 6:</strong> "I'm thinking about printing WHILE I design now"</li>
+  <li><strong>Day 7:</strong> "I can actually design things from scratch"</li>
+</ul>
+
+<h3>After Day 7: Your Learning Path</h3>
+<p>Your next 30 days should include:</p>
+<ol>
+  <li><strong>One functional project per week</strong> — Something you'll actually use</li>
+  <li><strong>One reverse-engineering exercise</strong> — Measure and model an existing object</li>
+  <li><strong>One remix</strong> — Improve someone else's design on Printables</li>
+  <li><strong>Join r/Fusion360</strong> — Ask questions, answer others' questions (teaching reinforces learning)</li>
+</ol>
+
+<h3>A Note on "Mastery"</h3>
+<p>Seven days won't make you a master. It will make you <strong>competent and confident</strong>. True mastery comes from:</p>
+<ul>
+  <li>Designing 50+ real projects</li>
+  <li>Failing, iterating, and learning from each failure</li>
+  <li>Understanding WHY things work, not just HOW to do them</li>
+  <li>Teaching others (nothing reveals gaps like explaining to a beginner)</li>
+</ul>
+<p>This plan gives you the foundation. The next 6-12 months of practice builds mastery.</p>
+
+<hr>
+
+<!-- Final CTA -->
+<div class="final-section" style="margin-bottom: 80px;">
+  <p style="font-size: 1.5rem; font-weight: 600; color: white; position: relative; z-index: 1; margin-bottom: 16px;">
+    <em>Good luck. Now stop reading and start sketching.</em>
+  </p>
+  <p style="color: var(--text-muted); position: relative; z-index: 1;">
+    🚀 Day 1 awaits. Open Fusion and begin.
+  </p>
+</div>
+
+</main>
+
+<script>
+  // Theme Toggle Functionality
+  const themeToggle = document.getElementById('themeToggle');
+  const themeThumb = document.querySelector('.theme-toggle-thumb');
+  
+  // Check for saved theme preference or system preference
+  function getPreferredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  
+  // Apply theme
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    themeThumb.textContent = theme === 'light' ? '☀️' : '🌙';
+  }
+  
+  // Initialize theme
+  setTheme(getPreferredTheme());
+  
+  // Toggle theme on click
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    setTheme(currentTheme === 'light' ? 'dark' : 'light');
+  });
+  
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      setTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
+  // TOC Sidebar Functionality
+  const tocToggle = document.getElementById('tocToggle');
+  const tocSidebar = document.getElementById('tocSidebar');
+  const tocOverlay = document.getElementById('tocOverlay');
+  
+  function openTOC() {
+    tocSidebar.classList.add('open');
+    tocOverlay.classList.add('open');
+  }
+  
+  function closeTOC() {
+    tocSidebar.classList.remove('open');
+    tocOverlay.classList.remove('open');
+  }
+  
+  tocToggle.addEventListener('click', openTOC);
+  tocOverlay.addEventListener('click', closeTOC);
+  
+  // Close TOC when clicking a link
+  tocSidebar.querySelectorAll('.toc-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeTOC();
+    });
+  });
+  
+  // Close TOC with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTOC();
+  });
+  
+  // Scroll to hero function for TOC
+  function scrollToHero() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Smooth scroll for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Add active state to nav days based on scroll position
+  const sections = document.querySelectorAll('.day-section');
+  const navDays = document.querySelectorAll('.nav-day');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollY >= sectionTop - 200) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navDays.forEach(day => {
+      day.style.background = '';
+      day.style.color = '';
+      if (day.getAttribute('href') === '#' + current) {
+        day.style.background = 'var(--primary)';
+        day.style.color = 'white';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

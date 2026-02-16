@@ -105,23 +105,24 @@
     /* Theme Toggle */
     .theme-toggle {
       position: fixed;
-      top: 20px;
+      top: 0;
       right: 20px;
+      height: 48px;
       z-index: 1000;
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
+      background: none;
+      border: none;
       border-radius: 100px;
-      padding: 6px 14px;
+      padding: 0;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .theme-toggle:hover {
-      border-color: var(--primary);
-      background: var(--bg-tertiary);
+      border-color: transparent;
+      background: none;
     }
 
     .theme-toggle-track {
@@ -164,14 +165,14 @@
     /* TOC Toggle Button */
     .toc-toggle {
       position: fixed;
-      top: 20px;
+      top: 0;
       left: 20px;
       z-index: 1000;
-      width: 44px;
-      height: 44px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      width: 36px;
+      height: 48px;
+      background: none;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -181,8 +182,8 @@
     }
 
     .toc-toggle:hover {
-      border-color: var(--primary);
-      background: var(--bg-tertiary);
+      border-color: transparent;
+      background: none;
     }
 
     /* Table of Contents Sidebar */
